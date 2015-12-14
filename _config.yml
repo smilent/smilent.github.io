@@ -1,5 +1,5 @@
 # Site settings
-title: Jun's Blog
+title: Jun's Note
 email: smilent_sj@163.com
 description: > # this means to ignore newlines until "baseurl:"
 
@@ -9,3 +9,4 @@ github_username: smilent
 
 # Build settings
 markdown: kramdown
+

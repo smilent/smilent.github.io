@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Class Creation
+title: Class Creation in Python
 ---
 
-Class Creation
+Class Creation in Python
 ===
 
 Everything in Python is an *object*. Every object has
@@ -32,6 +32,7 @@ A class instance is created by calling a class object. A class instance has a na
 Attribute assignments and deletions update the instance’s dictionary, never a class’s dictionary. If the class has a `__setattr__()` or `__delattr__()` method, this is called instead of updating the instance dictionary directly.
 
 Special attributes:
+
   - `__dict__` is the attribute dictionary;
   - `__class__` is the instance’s class.
 
@@ -40,13 +41,12 @@ With one argument, return the type of an *object*. The return value is a *type* 
 
 With three arguments, return a new *type* object. This is essentially a dynamic form of the `class` statement. The *name* string is the class name and becomes the `__name__` attribute; the *bases* tuple itemizes the base classes and becomes the `__bases__` attribute; and the *dict* dictionary is the namespace containing definitions for class body and becomes the `__dict__` attribute. For example, the following two statements create identical `type` objects:
 
-~~~
+{% highlight python linenos %}
 >>> class X(object):
 ...     a = 1
 ...
 >>> X = type('X',(object,),dict(a = 1))
-~~~
-{: .languate-python}
+{% endhighlight %}
 
 ## 4. Special method names
 
@@ -56,7 +56,7 @@ Called to create a new instance of class *cls*. `__new__()` is a static method (
 
 The return value of `__new__()` should be the new object instance (usually an instance of *cls*)
 
-Typically implementations create a new instance of the class by invoking the superclass's `__new__()` method using `super(currentclass, cls).__new__(cls[, ...])` with appropriate arguments and the modifying the newly-created instance as necessary before returning it.
+Typically implementations create a new instance of the class by invoking the superclass's `__new__()` method using `super(currentclass, cls).__new__(cls[, ...])` with appropriate arguments and then modifying the newly-created instance as necessary before returning it.
 
 If `__new__()` returns an instance of *cls*, then the new instance's `__init__()` method will be invoked like `__init__(self[, ...])`, where *self* is the new instance and the remaining arguments are the same as were passed to `__new__()`.
 
@@ -83,12 +83,12 @@ When the class definition is read, if `__metaclass__` is defined then the callab
 
 These steps will have to be performed in the metaclass's `__new__()` method - `type.__new__()` can then be called from this method to create a class with different properties. This example adds a new element to the class dictionary before creating the class:
 
-~~~ python
+{% highlight python linenos %}
 class metacls(type):
     def __new__(mcs, name, bases, dict):
         dict['foo'] = 'metacls was here'
         return type.__new__(mcs, name, bases, dict)
-~~~
+{% endhighlight %}
 
 We can of course also override other class methods (or add new methods); for example defining a custom `__call__()` method in the metaclass allows custom behavior when the class is called, e.g. not always creating a instance.
 
@@ -111,7 +111,7 @@ By default, classes are constructed using `type()`. The class body is executed i
 
 The class creation process can be customized by passing the `metaclass` keyword argument in the class definition line, or by inheriting from an existing class that included such an argument. In the following example, both `MyClass` and `MySubclass` are instances of `Meta`:
 
-~~~ python
+{% highlight python linenos %}
 class Meta(type):
     pass
 
@@ -120,7 +120,7 @@ class MyClass(metaclass = Meta):
 
 class MySubclass(MyClass):
     pass
-~~~
+{% endhighlight %}
 
 Any other keyword arguments that are specified in the class definition are passed through to all metaclass operations described below.
 
@@ -165,7 +165,7 @@ After the class object is created, it is passed to the class decorators included
 
 Here is an example of a metaclass that uses an `collections.OrderedDict` to remember the order hat class variables are defined:
 
-~~~ python
+{% highlight python linenos %}
 class OrderedClass(type):
     @classmethod
     def __prepare__(metacls, name, bases, **kwds):
@@ -184,11 +184,10 @@ class A(metaclass=OrderedClass):
 
 >>> A.members
 ('__module__', 'one', 'two', 'three', 'four')
-~~~
+{% endhighlight %}
 
 When the class definition for *A* gets executed, the process begins with calling the metaclass's `__prepare__` method which returns an empty `collections.OrderedDict`. That mapping records the methods and attributes of *A* as they are defined within the body of the class statement. Once those definitions are executed, the ordered dictionary is fully populated and the metaclass's `__new__()` method gets invoked. That method builds the new type and it saves the ordered dictionary keys in an attribute called `members`.
 
 
 ## Examples
-
-[singleton]
+[singleton](../../../2015/12/13/singleton.html)
