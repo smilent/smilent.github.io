@@ -6,6 +6,11 @@ title: Singleton in Python
 Singleton in Python
 ====
 
+* generate table of contents
+{:toc}
+----
+<br><br>
+
 ##Version 1
 
 {% highlight python linenos %}
@@ -105,7 +110,7 @@ if __name__ == '__main__':
 
 I found it in "Thinking in Python" written by Bruce Eckel: "Alex Martelli makes the observation that what we really want with a Singleton is to have a single set of state data for all objects". But in the strict sense, it is not Singleton. Here is the output:
 
-{% highlight python linenos %}
+{% highlight python %}
 <__main__.Singleton instance at 0x1080feea8>sausage
 <__main__.Singleton instance at 0x1080feef0>eggs
 {% endhighlight %}

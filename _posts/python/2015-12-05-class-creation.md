@@ -6,6 +6,11 @@ title: Class Creation in Python
 Class Creation in Python
 ===
 
+* generate table of contents
+{:toc}
+-----
+<br><br>
+
 Everything in Python is an *object*. Every object has
 
 - an identity, which never changes once the object has been created. It can be thought as the object's address in memory.
