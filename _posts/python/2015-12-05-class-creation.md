@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: post
 title: Class Creation in Python
+comments: true
 ---
-
-Class Creation in Python
-===
 
 * generate table of contents
 {:toc}

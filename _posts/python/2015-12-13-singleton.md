@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: post
 title: Singleton in Python
+comments: true
 ---
-
-Singleton in Python
-====
 
 * generate table of contents
 {:toc}

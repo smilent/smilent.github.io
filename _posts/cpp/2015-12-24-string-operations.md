@@ -1,10 +1,9 @@
 ---
-layout: default
-title: Common String Operations in C++
+layout: post
+title: "Common String Operations in C++"
+comments: true
 ---
 
-Common String Operations in C++
-===
 * 
 {:toc}
 
@@ -60,3 +59,5 @@ const_cast: 0.10048
 {% endhighlight %}
 
 It seems that for small strings, using `strdup()` is more efficient. However, `strdup()` is not a standard C++ function but a well-known POSIX function. What's more, `strdup()` makes a duplication of the original string, which means that you should use `free()` to release the memory after.
+
+**I tested these two versions further, and found that their performance in efficiency are quite close. I think the previous results may contain bias. Anyway, choose either one you like.**

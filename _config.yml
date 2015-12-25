@@ -4,9 +4,26 @@ email: smilent_sj@163.com
 description: > # this means to ignore newlines until "baseurl:"
 
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+url: "http://smilent.github.com" # the base hostname & protocol for your site
 github_username: smilent 
+
+author:
+  name      : 'Jun Sui'
+  email     : smilent_sj@163.com
+
+github: https://github.com/smilent/
+
+disqus_shortname: "junnote"
+
+paginate: 8
+comments: true
+paginate_path: "/page/:num"
+
+sass:
+  style: :compressed
+  sass_dir: _sass
 
 # Build settings
 markdown: kramdown
+permalink: /:title/
 
