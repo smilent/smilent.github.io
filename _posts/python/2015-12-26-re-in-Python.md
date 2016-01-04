@@ -1,6 +1,8 @@
 --- 
 layout: post
 title: RE in Python
+tags:
+- python
 comments: true
 ---
 

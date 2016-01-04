@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Compare Efficiency among if-else, ?:, and min()/max()
+tag:
+- cpp
 comments: true
 ---
 

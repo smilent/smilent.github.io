@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Singleton in Python
+tags:
+- python
 comments: true
 ---
 

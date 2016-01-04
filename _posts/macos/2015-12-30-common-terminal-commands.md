@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Common Terminal Commands
+tags:
+- osx 
 comments: true
 ---
 

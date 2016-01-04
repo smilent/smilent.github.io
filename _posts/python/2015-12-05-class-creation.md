@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Class Creation in Python
+tags:
+- python
 comments: true
 ---
 
