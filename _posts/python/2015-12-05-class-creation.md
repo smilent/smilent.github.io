@@ -41,7 +41,8 @@ Special attributes:
   - `__dict__` is the attribute dictionary;
   - `__class__` is the instance’s class.
 
-## 3.<a id="biftype"></a> The BIF `class type(name, bases, dict)`
+## 3.The BIF class type(name, bases, dict)
+<a id="biftype"></a> 
 With one argument, return the type of an *object*. The return value is a *type* object. The `isinstance()` bif is recommended for testing the type of an object.
 
 With three arguments, return a new *type* object. This is essentially a dynamic form of the `class` statement. The *name* string is the class name and becomes the `__name__` attribute; the *bases* tuple itemizes the base classes and becomes the `__bases__` attribute; and the *dict* dictionary is the namespace containing definitions for class body and becomes the `__dict__` attribute. For example, the following two statements create identical `type` objects:

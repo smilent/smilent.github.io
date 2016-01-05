@@ -124,6 +124,10 @@ grep -i foo some_file
 # and precede each line by its relative line number.
 grep -n foo some_file
 
+# Only the names of files containing selected lines are listed.
+# This argument is usually combined with -r or the find command.
+grep -l foo some_dir
+
 # Select lines that do not contain "foo" in file "some_file".
 grep -v foo some_file
 {% endhighlight %}
@@ -132,4 +136,20 @@ grep -v foo some_file
 {% highlight bash linenos %}
 # Search for "foo" in all the .cpp files
 find / "*.cpp" -exec grep foo {} \;
+{% endhighlight %}
+
+##time
+
+###time
+<pre>time [-lp] <u>utility</u></pre>
+This command can be used to measure the clock time, user time and system time of process "utility". The output format depends on your shell being used.
+
+{% highlight bash %}
+$time grep -rl "test" .  > test.txt
+{% endhighlight %}
+Output:
+{% highlight bash %}
+real	0m0.011s
+user	0m0.004s
+sys	0m0.005s
 {% endhighlight %}
