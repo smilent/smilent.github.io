@@ -3,6 +3,7 @@ layout: post
 title: Common Terminal Commands
 tags:
 - osx 
+- UNIX
 comments: true
 ---
 
@@ -153,3 +154,7 @@ real	0m0.011s
 user	0m0.004s
 sys	0m0.005s
 {% endhighlight %}
+
+- real time: the amount of time the process takes to run, and its value depends on the number of other processes running on the system.
+- user time: the cpu time attributed to user instructions.
+- sys time: the cpu time attributed to the kernel when it executes on behalf of the process.
