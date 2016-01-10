@@ -63,7 +63,7 @@ int main(){
 {% endhighlight %}
 
 I generated 10,000,000 pairs (pair_num = 10,000,000). Here is the output:
-{% highlight cpp linenos %}
+{% highlight cpp %}
 ifelse cost: 1.57152
 ?: cost: 1.55749
 max() cost: 1.61714

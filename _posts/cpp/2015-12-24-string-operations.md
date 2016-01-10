@@ -48,14 +48,14 @@ I adopt `strtok(char* str, const char * delimiters)`, which is in `<cstring>`. I
 
 I tested these two methods. I split "this is for test lalal" by whitespace for 1000 times for each of the two method. Here is the total elapsed time (both including fileIO):
 
-{% highlight bash linenos %}
+{% highlight bash %}
 strdup: 0.006906
 const_cast: 0.00841
 {% endhighlight %}
 
 I also copied the program for 1000 times into a file and split each line in that file by whitespace. Here is the result:
 
-{% highlight bash linenos %}
+{% highlight bash %}
 strdup: 0.110915
 const_cast: 0.10048
 {% endhighlight %}

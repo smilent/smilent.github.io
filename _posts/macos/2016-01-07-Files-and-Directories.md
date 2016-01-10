@@ -104,7 +104,7 @@ Given a *pathname*, the `stat` function returns a structure of information about
 The *buf* argument is a pointer to a structure that we must supply, and the functions fill in the structure. The definition of the structure can differ among implementations. In OS X, it looks like:
 
 <a id="stat"></a>
-{% highlight c %}
+{% highlight c linenos %}
 struct stat { /* when _DARWIN_FEATURE_64_BIT_INODE is NOT defined */
     dev_t    st_dev;    /* device inode resides on */
     ino_t    st_ino;    /* inode's number */

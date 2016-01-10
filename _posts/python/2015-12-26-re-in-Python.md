@@ -89,7 +89,7 @@ b = re.complie(r"\d+\.\d*")
 <dd markdown="1">
 If there are capturing groups in the separator and it matches at the start of the string, the result will start with an empty string. The same holds for the end of the string:
 
-{% highlight python linenos %}
+{% highlight python %}
 >>> re.split('(\W+)', '...words, words...')
 ['', '...', 'words', ', ', 'words', '...', '']
 {% endhighlight %}
