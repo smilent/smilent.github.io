@@ -29,3 +29,7 @@ Here I give my solution, which is based on <a href="http://botleg.com/stories/li
 {% endhighlight %}
 
 I make line numbers right-aligned. The last six lines are to prevent user from selecting line numbers.
+
+***NOTE***:
+
+Thanks to *yajunwf*, I noticed that line numbers are still copied to clipboard even though they are not highlighted. According to <a href="https://css-tricks.com/almanac/properties/u/user-select/">this post</a>, whether line numbers are copied depends on the web browser you use. 
