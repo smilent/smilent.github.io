@@ -271,3 +271,168 @@ There are two problems using these two functions:
 1. The offset of a member within a structure can differ between compilers and systems because of different alignment requirements. Indeed, some compilers have an option allowing structures to be packed tightly, to save space with a possible runtime performance penalty, or aligned accurately, to optimize runtime access of each member, This means that even on a single system, the binary layout of a structure can differ, depending on compiler options.
 2. The binary formats used to store multibyte integers and floating-point values differ among machine architectures.
 
+##Positioning a Stream
+
+<pre>
+#include &lt;stdio.h&gt;
+long ftell(FILE *fp);
+<div align="right">Return current file position indicator if OK, -1L on error</div>
+int fseek(FILE *fp, long offset, int whence);
+<div align="right">Return 0 if OK, -1 on error</div>
+void rewind(FILE *fp);
+
+off_t ftello(FILE *fp);
+<div align="right">Return current file position indicator if OK, (off_t)-1 on error</div>
+int fseeko(FILE *fp, off_t offset, int whence);
+<div align="right">Return 0 if OK, -1 on error</div>
+
+int fgetpos(FILE *restrict fp, fpos_t *restrict pos);
+int fsetpos(FILE *fp, const fpos_t *pos);
+<div align="right">Both return 0 if OK, nonzero on error</div>
+</pre>
+
+There are three ways to position a standard I/O stream:
+
+1. The two functions `ftell` and `fseek`. They assume that a file's position can be stored in a long integer.
+2. The two functions `ftello` and `fseeko`. They were introduced in the Single UNIX Specification to allow for file offsets that might not fit in a long integer.
+3. The two functions `fgetpos` and `gsetpos`. They were introduced by ISO C. They use an abstract data type, `fpos_t`, that records a file's position. This data type can be made as big as necessary to record a file's position.
+
+When porting applications to non-UNIX systems, use `fgetpos` and `fsetpos`.
+
+##Formatted I/O
+###Formatted Output
+<pre>
+#include &lt;stdio.h&gt;
+int printf(const char *restrict format, ...);
+int fprintf(FILE *restrict fp, const char *restrict format, ...);
+int dprintf(int fd, const char *restrict format, ...);
+<div align="right">All three return the number of characters output if OK, <br>negative value if output error</div>
+int sprintf(char *restrict buf, const char *restrict format, ...);
+<div align="right">Return the number of characters stored in array if OK, <br>negative value if encoding error</div>
+int snprintf(char *restrict buf, size_t n, const char *restrict format, ...);
+<div align="right">Return the number of characters that would have been stored in array <br>if buffer was large enough, negative value if encoding error</div>
+</pre>
+
+The `printf` function writes to the standard output, `fprintf`writes to the specified stream, `dprintf` writes to the specified file descriptor, and `sprintf` places the formatted characters in the array `buf`. The `sprintf` function automatically appends a null byte at the end of the array, but this null byte is not included in the return value.
+
+Note that it's possible for `sprintf` to over flow the buffer pointed to by `buf`. The caller is responsible for ensuring that the buffer is large enough. Because buffer overflows can lead to program instability and even security violations, `snprintf` was introduced. With it, the size of the buffer is an explicit parameter; any characters that would have been written past the end of the buffer are discarded instead. As with `sprintf`, the return value doesn't include the terminating null byte.
+
+The format specification conforms to a conversion specification:
+<pre>
+%[flags][fldwidth][precision][lenmodifier]contype
+</pre>
+
+The flags are summarized below:
+![the flags component of a conversion specification](../images/conversion_flag_component.png)
+
+The `fldwidth` component specifies a minimum field with for the conversion. If the conversion results in fewer characters, it is padded with spaces. The field width is a non-negative decimal integer or an asterisk.
+
+The `precision` component specifies the minimum number of digits to appear for integer conversions, the minimum number of digits to appear to the right of the decimal point for floating-point conversions, or the maximum number of bytes for string conversion. The precision is a period (.) followed by an optional non-negative decimal integer or an asterisk.
+
+The `lenmodifier` component specifies the size of the argument. Possible values are summarized below:
+![the length modifier component of a conversion specification](../images/conversion_length_modifier_component.png)
+
+The `convtype` component is not optional. It is summarized below:
+![the conversion type component of a conversion specification](../images/conversion_type_component.png)
+
+The following five variants of the `printf` family are similar to the previous five, but the variable argument list (*...*) is replaced with *arg*.
+
+<pre>
+#include &lt;stdarg.h&gt;
+#include &lt;stdio.h&gt;
+int vprintf(const char *restrict format, va_list arg);
+int vfprintf(FILE *restrict fp, const char *restrict format, va_list arg);
+int vdpritnf(int fd, const char *restrict format, va_list arg);
+int vsprintf(char *restrict buf, const char *restrict format, va_list arg);
+int vsnprintf(char *restrict buf, size_t n, const char *restrict format, va_list arg);
+</pre>
+
+###Formatted Input
+
+<pre>
+#include &lt;stdio.h&gt;
+int scanf(const char *restrict format);
+int fscanf(FILE (restrict fp, const char *restrict format, ...);
+int sscanf(const char *restrict buf, const char *restrict format, ...);
+<div align="right">All three return the number of input items assigned, <br>EOF if input error or end of file before any conversion</div>
+</pre>
+
+There are three optional components to a conversion specification:
+<pre>
+%[*][fldwidth][m][lenmodifier]convtype
+</pre>
+
+The optional leading asterisk is used to suppress conversion. Input is converted as specified by the rest of the conversion specification. The `fldwidth` and `lenmodifier` components are the same as the `printf` family. The `convtype` field is similar to the conversion type field used by the `printf` family, but there are some differences. One difference is that results that are stored in unsigned types can optionally be signed on input. For example, -1 will scan as 4294967295 into an unsigned integer. The figure below summarizes the conversion types supported by the `scanf` family:
+![the conversion type component of a conversion specification](../images/conversion_type_component_scanf.png)
+
+The optional `m` character between the field width and the length modifier is called the *assignment-allocation character*. It can be used with the *%c*, *%s*, and *%[* conversion specifiers to force a memory buffer to be allocated to hold the converted string. In this case, the corresponding argument should be the address of a pointer to which the address of the allocated buffer will be copied. If the call succeeds, the caller is responsible for freeing the buffer by calling the `free` function when the buffer is no longer needed.
+
+The `scanf` family also supports functions that use variable argument lists:
+<pre>
+#include &lt;stdarg.h&gt;
+#include &lt;stdio.h&gt;
+int vscanf(const char *restrict format, va_list arg);
+int vfscanf(FILE *restrict fp, const char *restrict format, va_list arg);
+int vsscanf(const char *restrict buf, const char *restrict format, va_list arg);
+</pre>
+
+##FILE* to File Descriptor
+
+<pre>
+#include &lt;stdio.h&gt;
+int fileno(FILE *fp);
+</pre>
+
+##Temporary Files
+
+<pre>
+#include &lt;stdio.h&gt;
+char *tmpnam(char *ptr);
+<div align="right">Returns pointer to unique path name</div>
+FILE *tmpfile(void);
+<div align="right">Returns file pointer if OK, NULL on error</div>
+</pre>
+
+<pre>
+#include &lt;stdlib.h&gt;
+char *mkdtemp(char *template);
+<div align="right">Returns the pointer to directory name if OK, NULL on error</div>
+int mkstemp(char *template);
+<div align="right">Returns file descriptor if OK, -1 on error</div>
+</pre>
+
+Unlike `tmpfile`, the temporary file created by `mkstemp` is not removed automatically for us. If we want to remove it from the file system namespace, we need to unlink it ourselves.
+
+Use of `tmpnam` and `tempnam` does have at least one drawback: a window exists between the time that the unique path name is returned and the time that an application creates a file with that name. During this timing window, anther process can create a file of the same name, The `tmpfile` amd `mkstemp` functions should be used instead, as they don't suffer from this problem.
+
+##Memory Streams
+
+The standard I/O library buffers data in memory, so operations such as character-at-a-time I/O and line-at-a-time I/O are more efficient (*compared with what?*). We can provide our own buffer for for the library to use by calling `setbuf` or `setvbuf`. In Version 4, the Single UNIX Specification added support for *memory streams*. There are standard I/O streams for which ther are no underlying files, although they are still accessed with `FILE` pointers. All I/O is done by transferring bytes to and from buffers in main memory.
+
+<pre>
+#include &lt;stdio.h&gt;
+FILE *fmemopen(void *restrict buf, size_t size, const char *restrict type);
+FILE *open_memstream(char **bufp, size_t *sizep);
+
+#include &lt;wchar.h&gt;
+FILE *open_wmemstream(wchar_t **bufp, size_t *sizep);
+</pre>
+All return a stream pointer if OK, NULL on error.
+
+The `open_memstream` function creates a stream that is byte oriented, and the `open_wmemstream` function creates a stream that is wide oriented. These two functions differ from `fmemopen` in several ways:
+
+1. The stream created is only open for writing.
+2. We can't specify our own buffer, but we can get access to the buffer's address and size through the *bufp* and *sizep* arguments, respectively.
+3. We need to free the buffer ourselves after closing the stream.
+4. The buffer will grow as we add bytes to the stream.
+
+We must follow some rules, however, regarding the use of the buffer address and it length:
+
+1. The buffer address and length are only valid after a call to `fclose` or `fflush`.
+2. These values are only valid until the next write to the stream or a call to `fclose`. Because the buffer can grow, it may need to be reallocated. If this happens, then we will find that the value of the buffer's memory address will change the next time we call `fclose` or `fflush`.
+
+Memory streams are well suited for creating strings, because they prevent buffer overflow. They can also provide a performance boost for functions that take standard I/O stream arguments used for temporary files, because memory streams access only main memory instead of a file stored on disk.
+
+##Alternative to Standard I/O
+
+The standard I/O library is not perfect. One inefficiency inherent in the standard I/O library is the amount of data copying that takes place. When we use the line-at-a-time functions, `fgets` and `fputs`, the data is usually copied twice: once between the kernel and the standard I/O buffer (when the corresponding `read` or `write` is issued) and again between the standard I/O buffer and our line buffer. The Fast I/O library (*fio(3)* in AT&T) gets around this by having the function that reads a line return a pointer to the line instead of copying the line into another buffer. There is also another replacement for the standard I/O library: *sfio*. This package is similar in speed to the *fio* library and normally faster than the standard I/O library. The package  *Alloc Stream Interface* (ASI) uses mapped files -- the `mmap` function. As with the *sfio* package, ASI attempts to minimize the amount of data copying by using pointers.
