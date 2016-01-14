@@ -1,9 +1,8 @@
 ---
 layout: post
-title: Common Terminal Commands
+title: Common Terminal Commands on OS X
 tags:
 - osx 
-- UNIX
 comments: true
 ---
 

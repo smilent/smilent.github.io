@@ -2,7 +2,6 @@
 layout: post
 title: Standard I/O Library
 tags:
-- osx
 - UNIX
 comments: true
 ---

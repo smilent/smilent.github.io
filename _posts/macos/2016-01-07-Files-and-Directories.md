@@ -2,7 +2,6 @@
 layout: post
 title: Files and Directories
 tags:
-- osx
 - UNIX
 comments: true
 ---
