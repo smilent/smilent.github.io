@@ -6,7 +6,7 @@ tags:
 comments: true
 ---
 
-*toc
+* toc
 {:toc}
 ---
 
@@ -22,4 +22,4 @@ Conversion specifiers for `strftime`:
 ![conversion specifiers for strftime](../images/conversion_specifiers_for_strftime.png)
 
 Conversion specifiers for `strptime`:
-![conversion specifiers for strptime](../images/conversion_specifiers_for_strptime.png)
+![conversion specifiers for strptime](../images/conversion_specifiers_for_strptime.png){: width="60%"}
