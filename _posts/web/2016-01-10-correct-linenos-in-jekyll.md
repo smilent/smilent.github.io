@@ -4,6 +4,7 @@ title: Correct linenos in Jekyll
 tags:
 - web
 comments: true
+keywords: "jekyll, code block, linenos"
 ---
 
 I use kramdown as Jekyll's default markdown implementation. By default, line numbers in a code block are inline with the code. As a result, you'll get line numbers in your clipboard if you use "select and copy", which is quite annoying. A solution is to use `linenos=table`. However, there are some problems in aligning line numbers and codes, and the layout seems quit strange, as shown <a href="http://thanpol.as/jekyll/jekyll-code-highlight-and-line-numbers-problem-solved/">here</a>. This post also gives three possible solutions but they seems to be complicated for me since I'm quite fresh to web development.

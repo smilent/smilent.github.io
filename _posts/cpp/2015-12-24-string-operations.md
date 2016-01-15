@@ -4,6 +4,7 @@ title: "Common String Operations in C++"
 tags:
 - cpp
 comments: true
+keywords: "c++, split"
 ---
 
 * 

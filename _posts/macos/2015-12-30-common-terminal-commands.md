@@ -4,6 +4,7 @@ title: Common Terminal Commands on OS X
 tags:
 - osx 
 comments: true
+keywords: "os x, terminal, common commands"
 ---
 
 * toc goes here

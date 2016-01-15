@@ -4,6 +4,7 @@ title: Standard I/O Library
 tags:
 - UNIX
 comments: true
+keywords: "APUE, unix, standard io"
 ---
 
 * toc

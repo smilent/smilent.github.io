@@ -4,6 +4,7 @@ title: Compare Efficiency among if-else, ?:, and min()/max()
 tag:
 - cpp
 comments: true
+keywords: "c++,if-else, ? :, min/max, efficiency"
 ---
 
 We often need to calculate the maximum/minimum value of a set of numbers. if-else, ?: and min()/max() are three methods we usually use to achieve the goal. In this post, I compare the efficiency among them. Here is the code:

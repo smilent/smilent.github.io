@@ -4,6 +4,7 @@ title: RE in Python
 tags:
 - python
 comments: true
+keywords: "python, regular expression"
 ---
 
 * generate table

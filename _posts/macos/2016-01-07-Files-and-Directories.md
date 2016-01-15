@@ -4,6 +4,7 @@ title: Files and Directories
 tags:
 - UNIX
 comments: true
+keywords: "APUE, unix, file, directory"
 ---
 
 * toc

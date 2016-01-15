@@ -4,6 +4,7 @@ title: Class Creation in Python
 tags:
 - python
 comments: true
+keywords: "python, class creation"
 ---
 
 * generate table of contents

@@ -4,6 +4,7 @@ title: Singleton in Python
 tags:
 - python
 comments: true
+keywords: "python, singleton"
 ---
 
 * generate table of contents
