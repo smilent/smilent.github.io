@@ -86,7 +86,7 @@ With `setvbuf`, we specify exactly which type of buffering we want. This is done
 If we specify an unbuffered stream, the *buf* and *size* arguments are ignored. If we specify fully buffered or line buffered, *buf* and *size* can optionally specify a buffer and its size. If the stream is buffered and *buf* is NULL, the standard I/O library will automatically allocate its own buffer of the appropriate size for the stream. By appropriate size, we mean the value specified by the constant `BUFSIZ`.
 
 Here is the summary of these two functions.
-![summary of setbuf and setvbuf](../images/summarize_setbuf_setvbuf.png)
+![summary of setbuf and setvbuf]({{site.baseurl}}/images/summarize_setbuf_setvbuf.png)
 
 We should let the system choose the buffer size and automatically allocate the buffer. When we do this, the standard I/O library automatically releases the buffer when we close the stream.
 
@@ -118,7 +118,7 @@ The differences in these three functions are as follows:
 2. The `freopen` function opens a specified file on a specified stream, closing the stream first if its is already open. If the stream previously has an orientation, `freopen` clears it. This function is typically used to open a specified file as one of the predefined streams: standard input, standard output, or standard error.
 3. The `fdopen` function takes a existing file descriptor, which we could obtain from the `open`, `dup`, `dup2`, `fcntl`, `pipe`, `socket`, `socketpair`, or `accept` functions, and associates a standard I/O stream with the descriptor. This function is often used with descriptors that are returned by the functions that create pipes and network communication channels. Because these special types of files cannot be opened with she standard I/O `fopen` function, we have to call the device-specific function to obtain a file descriptor, and then associate this descriptor with a standard I/O stream using `fdopen`.
 Here is the *type* argument for opening a standard I/O stream.
-![the type argument for opening a standard I/O stream](../images/type_argument_for_opening_io_stream.png)
+![the type argument for opening a standard I/O stream]({{site.baseurl}}/images/type_argument_for_opening_io_stream.png)
 
 When a file is opened with a type of append, each write will take place at the then current end of file. If multiple processes open the same file with the standard I/O append mode, the data from each process will be correctly written to the file.
 
@@ -323,17 +323,17 @@ The format specification conforms to a conversion specification:
 </pre>
 
 The flags are summarized below:
-![the flags component of a conversion specification](../images/conversion_flag_component.png)
+![the flags component of a conversion specification]({{site.baseurl}}/images/conversion_flag_component.png)
 
 The `fldwidth` component specifies a minimum field with for the conversion. If the conversion results in fewer characters, it is padded with spaces. The field width is a non-negative decimal integer or an asterisk.
 
 The `precision` component specifies the minimum number of digits to appear for integer conversions, the minimum number of digits to appear to the right of the decimal point for floating-point conversions, or the maximum number of bytes for string conversion. The precision is a period (.) followed by an optional non-negative decimal integer or an asterisk.
 
 The `lenmodifier` component specifies the size of the argument. Possible values are summarized below:
-![the length modifier component of a conversion specification](../images/conversion_length_modifier_component.png)
+![the length modifier component of a conversion specification]({{site.baseurl}}/images/conversion_length_modifier_component.png)
 
 The `convtype` component is not optional. It is summarized below:
-![the conversion type component of a conversion specification](../images/conversion_type_component.png)
+![the conversion type component of a conversion specification]({{site.baseurl}}/images/conversion_type_component.png)
 
 The following five variants of the `printf` family are similar to the previous five, but the variable argument list (*...*) is replaced with *arg*.
 
@@ -363,7 +363,7 @@ There are three optional components to a conversion specification:
 </pre>
 
 The optional leading asterisk is used to suppress conversion. Input is converted as specified by the rest of the conversion specification. The `fldwidth` and `lenmodifier` components are the same as the `printf` family. The `convtype` field is similar to the conversion type field used by the `printf` family, but there are some differences. One difference is that results that are stored in unsigned types can optionally be signed on input. For example, -1 will scan as 4294967295 into an unsigned integer. The figure below summarizes the conversion types supported by the `scanf` family:
-![the conversion type component of a conversion specification](../images/conversion_type_component_scanf.png)
+![the conversion type component of a conversion specification]({{site.baseurl}}/images/conversion_type_component_scanf.png)
 
 The optional `m` character between the field width and the length modifier is called the *assignment-allocation character*. It can be used with the *%c*, *%s*, and *%[* conversion specifiers to force a memory buffer to be allocated to hold the converted string. In this case, the corresponding argument should be the address of a pointer to which the address of the allocated buffer will be copied. If the call succeeds, the caller is responsible for freeing the buffer by calling the `free` function when the buffer is no longer needed.
 

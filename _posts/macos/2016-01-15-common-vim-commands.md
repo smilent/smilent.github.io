@@ -13,6 +13,8 @@ keywords: "Vim, commands"
 {:toc}
 ---
 
+
+{{site.url}}
 This blog lists some vim commands that are used frequently. However, some quite basic commands such as *hjkl* are not included. These commands work on Mac OS X. In the end of this post I put some sites about learning vim.
 
 Type `:help cmd` in Vim to get more details of the command `cmd`.
@@ -41,7 +43,7 @@ y}      " copy from the current position to the end of the paragraph.
 :'a,'b y    " copy from mark a to mark b
 
 :m,n !pbcopy    " copy m-th line to n-th line to clipboard. The copied lines are deleted from the source text
-:m,n w!pbcopy   " copy m-th line to n-th line to clipboard. The copied lines are kept in the source text
+:m,nw !pbcopy   " copy m-th line to n-th line to clipboard. The copied lines are kept in the source text
 {% endhighlight %}
 
 Replace 'y' with the following characters to change behaviors.
@@ -82,6 +84,9 @@ Ctrl-r  " redo
 =%      " indent the current braces {...}
 
 G=gg    " auto indent entire document, which is equal to gg=G
+n==     " indent n lines from the current line
+=nj     " indent the current line and the following n lines
+=nk     " indent the current line and the previous n lines
 {% endhighlight %}
 
 *=* can also be combined with many jump commands listed below.
@@ -129,6 +134,8 @@ $       " go to the end of the current line
 ?foo        " search backward for 'foo'
 /^foo.*others   " line beginning with 'foo' and followed by 'others'. Regex expressions work here.
 
+:%s/foo/ /gn    " count occurrences of 'foo'
+
 :%s/foo/others /igc " substitute 'foo' with others, case-insensitively(i), globally(g) and asking for confirmation(c) 
 :s/foo/others /igc  " substitute 'foo' with others in the current line
 
@@ -156,6 +163,7 @@ This acts on the specified *[range]* (default whole file), by executing the Ex c
 {% highlight vim %}
 :x      " save and quit, the same as :wq
 :qa     " quit all files
+:saveas newfile    " save to 'newfile'
 {% endhighlight %}
 
 ##Window
@@ -164,13 +172,38 @@ This acts on the specified *[range]* (default whole file), by executing the Ex c
 :e filename     " edit another file
 :split filename " open file in a new horizontal window
 :vsplit filename    " open file in a new vertical window
+
 Ctrl-w h        " move to the file on the left. 'h' can be replaced by 'j', 'k' and 'l'
 Ctrl-w =        " make all windows equal size
+Ctrl-w +        " increase height
+Ctrl-w -        " decrease height
+Ctrl-w _        " maximize height
+Ctrl-w >        " increase width
+Ctrl-w <        " decrease width
+Ctrl-w |        " maximize width
+:res +n         " increase height by n lines
+:vertical res +n    " increase width by n characters
 
 :hide           " close current window
 :only       " keep only this window open
 {% endhighlight %}
 
+##Configuration
+
+{% highlight vim %}
+:set nu     " show line numbers
+:set relativenumber " set relative number
+:set hlsearch   " highlight search
+:set autoindent " auto indent
+:set smartindent    " smart indent
+:set tabstop=4  " set tabstop = 4 
+:set softtabstop=4
+:set shiftwidth=4   " set indent width = 4
+:set expandtab  " replace tab with whitespaces when indent
+:filetype on    " auto detect file type
+:syntax on      
+:setlocal spell spelllang=en_us " auto spell check
+{% endhighlight %}
 ----
 Some helpful sites:
 

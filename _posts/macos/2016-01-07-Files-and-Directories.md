@@ -380,10 +380,10 @@ Most contemporary UNIX systems provide the fields `st_blksize` and `st_blocks`. 
 ##File Systems
 
 We can think of a disk drive being divided into one or more partitions. Each partition can contain a file system, as shown below. The i-nodes are *fixed-length* entries that contain most of the information about a file.
-![Disk drive, partitions, and a file system](../images/disk_drive_partition_file_system.png)
+![Disk drive, partitions, and a file system]({{site.baseurl}}/images/disk_drive_partition_file_system.png)
 
 If we examine the i-node and data block portion of a cylinder group in more detail, we could have the arrangement shown below.
-![Cylinder group's i-nodes and data blocks in more detail](../images/i-node_data_block.png)
+![Cylinder group's i-nodes and data blocks in more detail]({{site.baseurl}}/images/i-node_data_block.png)
 
 Note the following points from the figure above:
 
@@ -399,7 +399,7 @@ $ mkdir testdir
 {% endhighlight %}
 
 The figure below shows the result.
-![Sample cylinder group after creating the directory testdir](../images/after_creating_testdir.png)
+![Sample cylinder group after creating the directory testdir]({{site.baseurl}}/images/after_creating_testdir.png)
 
 The i-node whose number id 2549 has a type field of "directory" and a link count equal to 2. Any leaf directory always has a link count of 2. The value of 2 comes from the directory entry that names the directory (*testdir* in this example) and from the entry for dot in that directory.  
 
@@ -450,4 +450,4 @@ Note that the system does not maintain the last-access time for an i-node. This 
 
 ##Summary of File Access Permission Bits
 
-![summary of file access permission bits](../images/file_access_permission_bits.png)
+![summary of file access permission bits]({{site.baseurl}}/images/file_access_permission_bits.png)

@@ -197,4 +197,4 @@ When the class definition for *A* gets executed, the process begins with calling
 
 
 ## Examples
-[singleton](../../../2015/12/13/singleton.html)
+[singleton]({{site.baseurl}}/blogs/singleton)
