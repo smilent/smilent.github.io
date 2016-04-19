@@ -18,9 +18,9 @@ The following classes are needed for reading from or writing to files:
 - `ifstream`: stream class to read from files
 - `fstream`: stream class to both read from and write to files
 
-##Open and Close
+## Open and Close
 
-{% highlight c++ %}
+```c++
 int main(){
     std::ofstream myfile;
     myfile.open("example.txt"); // check if the file has been opened successfully
@@ -33,14 +33,14 @@ int main(){
             // the destructor automatically calls it.
     return 0;
 }
-{% endhighlight %}
+```
 
 Signature of `ofstream::open()`:
 
-{% highlight cpp %}
+```c++
 void ofstream::open(const char* filename, ios_base::openmode mode = ios_base::out);
 void ofstream::open(const string& filename, ios_base::openmode mode = ios_base::out); // c++11
-{% endhighlight %}
+```
 
 `ifstream::open` and `fstream::open` are similar to this one except the default values to `mode`, which is listed below.
 
@@ -63,7 +63,7 @@ The default mode parameter for each stream:
 |ifstream|ios::in|
 |fstream|ios::in\|ios::out|
 
-##Read and Write
+## Read and Write
 
 {% highlight cpp %}
 if(myfile.is_open()){
@@ -85,7 +85,7 @@ else{
 }
 {% endhighlight %}
 
-##Position a Stream
+## Position a Stream
 
 All I/O stream objects keep internally at least one internal position:
 
@@ -136,7 +136,7 @@ getline(infile, line); // line: "world"
 outfile << "world" ; // outfile.txt: "override the old worldnt"
 {% endhighlight %}
 
-##Binary Files
+## Binary Files
 
 For binary files, reading and writing data with the extraction and insertion operators (<< and >>) and functions like `getline` is not efficient, sinve we do not need to format any data and data is likely not formatted in lines. Instead, we should use `write` and `read`.
 
@@ -161,7 +161,7 @@ else{
 
 {% endhighlight %}
 
-##Buffers and Sybchronization
+## Buffers and Sybchronization
 
 When we operate with file streams, these are associated to an internal buffer object of type `streambuf`. This buffer object may represent a memory block that acts as an intermediary between the stream ans the physical file. The operating system may also define other layers of buffering for reading and writing to files.
 

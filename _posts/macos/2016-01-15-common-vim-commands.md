@@ -19,9 +19,9 @@ This blog lists some vim commands that are used frequently. However, some quite 
 
 Type `:help cmd` in Vim to get more details of the command `cmd`.
 
-##Text Edit
+## Text Edit
 
-###Copy, Paste and Select
+### Copy, Paste and Select
 
 {% highlight vim  %}
 p       " paste from buffer
@@ -54,7 +54,7 @@ Replace 'y' with the following characters to change behaviors.
 |d| delete|
 |c| change|
 
-###Replace and Substitute
+### Replace and Substitute
 
 {% highlight vim %}
 r       " replace the current character
@@ -66,7 +66,7 @@ S       " substitute current line
 
 Advanced usages can be found in <a href="#searchandsubstitute">Search and Substitute</a>.
 
-###Undo and Redo
+### Undo and Redo
 
 {% highlight vim %}
 u       " undo last change
@@ -77,7 +77,7 @@ Ctrl-r  " redo
 
 *Change* is defined as all the input between two vim commands. *U* is not actually a true "undo" command as it does not actually navigate undo history like *u* and *CTRL-r*. This means that (somewhat confusingly) *U* is itself undo-able with *u*; it creates a new change to reverse previous changes.
 
-###Indent Code Block
+### Indent Code Block
 
 {% highlight vim %}
 =       " indent the current line
@@ -91,7 +91,7 @@ n==     " indent n lines from the current line
 
 *=* can also be combined with many jump commands listed below.
 
-##Locate and Jump
+## Locate and Jump
 
 {% highlight vim %}
 
@@ -125,7 +125,7 @@ $       " go to the end of the current line
 
 <a id="searchandsubstitute"></a>
 
-##Search and Substitute
+## Search and Substitute
 
 {% highlight vim %}
 /foo        " search forward for 'foo'
@@ -141,7 +141,7 @@ $       " go to the end of the current line
 
 {% endhighlight %}
 
-##Global Operation 
+## Global Operation 
 
 For details, refer to <a href="http://vim.wikia.com/wiki/Power_of_g">this page</a>.
 
@@ -158,7 +158,7 @@ This acts on the specified *[range]* (default whole file), by executing the Ex c
 :v/foo/d            " delete all lines not containing 'foo', the same as :g!/foo/d. 'v' means inverse
 {% endhighlight %}
 
-##File Operations
+## File Operations
 
 {% highlight vim %}
 :x      " save and quit, the same as :wq
@@ -166,7 +166,7 @@ This acts on the specified *[range]* (default whole file), by executing the Ex c
 :saveas newfile    " save to 'newfile'
 {% endhighlight %}
 
-##Window
+## Window
 
 {% highlight vim %}
 :e filename     " edit another file
@@ -188,7 +188,7 @@ Ctrl-w |        " maximize width
 :only       " keep only this window open
 {% endhighlight %}
 
-##Configuration
+## Configuration
 
 {% highlight vim %}
 :set nu     " show line numbers

@@ -15,7 +15,7 @@ This blog is a note of APUE.
 
 <br><br>
 
-##Streams and <code>FILE</code> Objects
+## Streams and <code>FILE</code> Objects
 
 Standard I/O file streams can be used with both single-byte and multibyte ("wide") character sets. A stream's orientation determines whether the characters that are read and written are single byte or multibyte. Initially, when a stream is created, it has no orientation.
 
@@ -37,13 +37,13 @@ Note that `fwide` will not change the orientation of a stream that is already or
 
 When we open a stream, the standard I/O function `fopen` returns a pointer to a `FILE` object. This object is normally a structure that contains all the information required by the standard I/O library to manage the stream: the file descriptor used for actual I/O, a ponter to a buffer for the stream, the size of the buffer, a count of the number of characters currently in the buffer, an error flag, and the like. However, application software should never need to examine a `FILE` object. We just pass it as an argument to each standard I/O function.
 
-##Standard Input, Standard Output, and Standard Error
+## Standard Input, Standard Output, and Standard Error
 
 These streams are predefined and automatically available to a process, and they refer to the same files as the file descriptors `STDIN_FILENO`, `STDOUT_FILENO`, and `STDERR_FILENO`, respectively. 
 
 These three standard I/O streams are referenced through the predefined `FILE *` `stdin`, `stdout`, and `stderr`, which are defined in the `stdio.h` header.
 
-##Buffering
+## Buffering
 
 The goal of the buffering provided by the standard I/O library is to use the minimum number of `read` and `write` calls. Also, this library tries to do its buffering automatically for each I/O stream, obviating the need for the application to worry about it.
 
@@ -101,7 +101,7 @@ Return 0 if OK, EOF on error.
 
 The `fflush` function causes any unwritten data for the stream to be passed to the kernel. As a special case, if *fp* is NULL, `fflush` causes all output streams to be flushed.
 
-##Opening a Stream
+## Opening a Stream
 
 <pre>
 #include &lt;stdio.h&gt;
@@ -138,7 +138,7 @@ Return 0 if OK, EOF on error.
 
 Any buffered output data is flushed before the file is closed. Any input data that may be buffered is discarded. If the standard I/O library had automatically allocated a buffer for the stream, that buffer is released.
 
-##Reading and Writing a Stream
+## Reading and Writing a Stream
 
 Once we open a stream, we can choose from among three types of unformatted I/O:
 
@@ -146,7 +146,7 @@ Once we open a stream, we can choose from among three types of unformatted I/O:
 2. Line-at-a-time I/O. If we want to read or write a line at a time, we use `fgets` and `fputs`. Each line is terminated with a newline character, and we have to specify the maximum line length that we can handle when we call `fgets`. 
 3. Direct I/O. This type of I/O is supported by the `fread` and `fwrite` functions. For each I/O operation, we read or write some number of objects, where each object is of a specified size. These two functions are often used for binary files where we read or write a structure with each operation.
 
-###Input Functions
+### Input Functions
 
 <pre>
 #include &lt;stdio.h&gt;
@@ -193,7 +193,7 @@ Return *c* if OK, EOF on error.
 
 Pushback is often used when we're reading an input stream and breaking the input into words or tokens of some form. Sometimes we need to peek at the next character to determine how to handle the current character. It's then easy to push back the character that we peeked at, for the next call to `getc` to return.
 
-###Output Functions
+### Output Functions
 
 <pre>
 #include &lt;stdio.h&gt;
@@ -204,7 +204,7 @@ int putchar(int c);
 
 They all return *c* if OK, EOF on error.
 
-##Line-at-a-Time I/O
+## Line-at-a-Time I/O
 
 <pre>
 #include &lt;stdio.h&gt;
@@ -230,7 +230,7 @@ The function `fputs` writes the null-terminated string to the specified stream. 
 
 > Always use `fputs` and `fgets`.
 
-##Binary I/O
+## Binary I/O
 
 <pre>
 #include &lt;stdio.h&gt;
@@ -271,7 +271,7 @@ There are two problems using these two functions:
 1. The offset of a member within a structure can differ between compilers and systems because of different alignment requirements. Indeed, some compilers have an option allowing structures to be packed tightly, to save space with a possible runtime performance penalty, or aligned accurately, to optimize runtime access of each member, This means that even on a single system, the binary layout of a structure can differ, depending on compiler options.
 2. The binary formats used to store multibyte integers and floating-point values differ among machine architectures.
 
-##Positioning a Stream
+## Positioning a Stream
 
 <pre>
 #include &lt;stdio.h&gt;
@@ -299,8 +299,8 @@ There are three ways to position a standard I/O stream:
 
 When porting applications to non-UNIX systems, use `fgetpos` and `fsetpos`.
 
-##Formatted I/O
-###Formatted Output
+## Formatted I/O
+### Formatted Output
 <pre>
 #include &lt;stdio.h&gt;
 int printf(const char *restrict format, ...);
@@ -347,7 +347,7 @@ int vsprintf(char *restrict buf, const char *restrict format, va_list arg);
 int vsnprintf(char *restrict buf, size_t n, const char *restrict format, va_list arg);
 </pre>
 
-###Formatted Input
+### Formatted Input
 
 <pre>
 #include &lt;stdio.h&gt;
@@ -376,14 +376,14 @@ int vfscanf(FILE *restrict fp, const char *restrict format, va_list arg);
 int vsscanf(const char *restrict buf, const char *restrict format, va_list arg);
 </pre>
 
-##FILE* to File Descriptor
+## FILE* to File Descriptor
 
 <pre>
 #include &lt;stdio.h&gt;
 int fileno(FILE *fp);
 </pre>
 
-##Temporary Files
+## Temporary Files
 
 <pre>
 #include &lt;stdio.h&gt;
@@ -405,7 +405,7 @@ Unlike `tmpfile`, the temporary file created by `mkstemp` is not removed automat
 
 Use of `tmpnam` and `tempnam` does have at least one drawback: a window exists between the time that the unique path name is returned and the time that an application creates a file with that name. During this timing window, anther process can create a file of the same name, The `tmpfile` amd `mkstemp` functions should be used instead, as they don't suffer from this problem.
 
-##Memory Streams
+## Memory Streams
 
 The standard I/O library buffers data in memory, so operations such as character-at-a-time I/O and line-at-a-time I/O are more efficient (*compared with what?*). We can provide our own buffer for for the library to use by calling `setbuf` or `setvbuf`. In Version 4, the Single UNIX Specification added support for *memory streams*. There are standard I/O streams for which ther are no underlying files, although they are still accessed with `FILE` pointers. All I/O is done by transferring bytes to and from buffers in main memory.
 
@@ -433,6 +433,6 @@ We must follow some rules, however, regarding the use of the buffer address and 
 
 Memory streams are well suited for creating strings, because they prevent buffer overflow. They can also provide a performance boost for functions that take standard I/O stream arguments used for temporary files, because memory streams access only main memory instead of a file stored on disk.
 
-##Alternative to Standard I/O
+## Alternative to Standard I/O
 
 The standard I/O library is not perfect. One inefficiency inherent in the standard I/O library is the amount of data copying that takes place. When we use the line-at-a-time functions, `fgets` and `fputs`, the data is usually copied twice: once between the kernel and the standard I/O buffer (when the corresponding `read` or `write` is issued) and again between the standard I/O buffer and our line buffer. The Fast I/O library (*fio(3)* in AT&T) gets around this by having the function that reads a line return a pointer to the line instead of copying the line into another buffer. There is also another replacement for the standard I/O library: *sfio*. This package is similar in speed to the *fio* library and normally faster than the standard I/O library. The package  *Alloc Stream Interface* (ASI) uses mapped files -- the `mmap` function. As with the *sfio* package, ASI attempts to minimize the amount of data copying by using pointers.

@@ -13,7 +13,7 @@ keywords: "c++, split"
 ---
 <br><br>
 
-##split
+## split
 
 The code below splits a given string `s` by any character in `delim`:
 

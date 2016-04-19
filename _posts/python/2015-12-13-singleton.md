@@ -12,7 +12,7 @@ keywords: "python, singleton"
 ----
 <br><br>
 
-##Version 1
+## Version 1
 
 {% highlight python linenos %}
 class Singleton:
@@ -60,7 +60,7 @@ As we know, `print x`/`print(x)` displays `x.__str__`. Accessing `x.__str__` is 
 
 ---
 
-##Version 2
+## Version 2
 
 {% highlight python linenos %}
 class Singleton(object):
@@ -86,7 +86,7 @@ It works in both Python 2.7 and 3.4. But in Python 2.7, `Singleton` must inherit
 
 ---
 
-##Version 3
+## Version 3
 
 {% highlight python linenos %}
 class Borg:

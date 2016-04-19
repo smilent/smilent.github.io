@@ -15,9 +15,9 @@ keywords: "os x, terminal, common commands"
 This blog only lists ***SOME*** arguments of a command.
 <br><br>
 
-##Directory
+## Directory
 
-###dirs
+### dirs
 <pre> dirs [-clpv] [+N | -N] </pre>
 
 Display the list of currently remembered directories. Directories are added to the list with the `pushd` command; the `popd` command removes directories from the list. Click [here](https://www.gnu.org/software/bash/manual/html_node/Directory-Stack-Builtins.html) for more details.
@@ -59,7 +59,7 @@ Brings the *N*th directory(counting from the left of the list printed by `dirs`,
 
 ## Search and Replace
 
-###find 
+### find 
 
 Click [here](https://www.digitalocean.com/community/tutorials/how-to-use-find-and-locate-to-search-for-files-on-a-linux-vps) for more examples.
 
@@ -110,7 +110,7 @@ find -L /usr/ports/packages -type l -exec rm -- {} +
 
 {% endhighlight %}
 
-###grep
+### grep
 
 The grep utility searches any given input files, selecting lines that match one or more patterns.  By default, a pattern matches an input line if the regular expression (RE) in the pattern matches the input line without its trailing newline.  An empty expression matches every line.  Each input line that matches at least one of the patterns is written to the standard output.
 
@@ -139,9 +139,9 @@ grep -v foo some_file
 find / "*.cpp" -exec grep foo {} \;
 {% endhighlight %}
 
-##time
+## time
 
-###time
+### time
 <pre>time [-lp] <u>utility</u></pre>
 This command can be used to measure the clock time, user time and system time of process "utility". The output format depends on your shell being used.
 

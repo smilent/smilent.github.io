@@ -14,7 +14,7 @@ keywords: "python, time, file"
 This post lists some common operations in Python such as file operation and time handling.
 <br><br>
 
-##File Operations
+## File Operations
 
 {% highlight python %}
 try:
@@ -27,7 +27,7 @@ except IOError:
     
 {% endhighlight %}
 
-##Time Handling
+## Time Handling
 
 `datetime` in [Python2.x](https://docs.python.org/2/library/datetime.html) or [Python 3.x](https://docs.python.org/3/library/datetime.html).
 

@@ -14,7 +14,7 @@ keywords: "python, regular expression"
 
 It is important to note that most regular expression operations are available as module-level functions and `RegexObject` methods. The functions are shortcuts that don't require you to compile a regex object first, but miss some fine-tuning parameters.
 
-##Some Special charaters
+## Some Special charaters
 
 For more details about special characters, see [here](https://docs.python.org/2/library/re.html)
 <dt markdown="1">`$`</dt>
@@ -51,7 +51,7 @@ If you're not using a raw string to express the pattern, remember that Python al
 <dd markdown="1">This is an extension notation (a `?` following a `(` is not meaningful otherwise). The first character after the `?` determines what the meaning and further syntax of the construct is. Extensions usually fo not create a new group; `(?P<name>...)` is the only exception to this rule. Following are the currently soported extensions.
 </dd>
 
-##Some module contents
+## Some module contents
 
 <dt markdown="1">`re.compile(pattern, flags=0)`</dt>
 <dd markdown="1">

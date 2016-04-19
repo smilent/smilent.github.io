@@ -14,7 +14,7 @@ keywords: "APUE, unix, file, directory"
 This blog is a note of APUE.
 <br><br>
 
-##File Types
+## File Types
 The file types are:
 
 1. Regular file. The most common type of file, which contains data of some form. There is no distinction to the UNIX kernel whether this data is text or binary. Any interpretation of the contents of a regular file is left to the application processing the file.
@@ -48,7 +48,7 @@ The type of a file is encoded in the `st_mode` member of the <a href="#stat">`st
 | S_ISSOCK()       |socket|
 |-----------------+------------+
 
-##User ID and Group ID
+## User ID and Group ID
 
 Every process has six or more IDs associated with it.
 
@@ -58,7 +58,7 @@ Every process has six or more IDs associated with it.
 
 Every file has an owner and a group owner, which are specified by `st_uid` and `st_gid` in <a href="#stat">`stat`</a>, respectively.
 
-##File Access Permissions
+## File Access Permissions
 
 The `st_mode` in <a href="#stat">`stat`</a> also encodes the access permission bits for the file. There are nine permission bits for each file, divided into three categories as shown below:
 
@@ -84,10 +84,10 @@ To delete an existing file, we need write permission and execute permission in t
 
 Execute permission for a file must be on if we want to execute the file using any of the seven `exec` functions. The file also has to be a regular file.
 
-##Functions
+## Functions
 Details of most functions can be obtained by <code>man 2 <i>func_name</i></code>.
 
-###stat, fstate, fstatat, and lstat
+### stat, fstate, fstatat, and lstat
 
 <pre>
 #include &lt;sys/stat.h&gt;
@@ -145,7 +145,7 @@ struct stat { /* when _DARWIN_FEATURE_64_BIT_INODE is defined */
 };
 {% endhighlight %}
 
-###umask
+### umask
 
 <pre>
 #include &lt;sys/stat.h&gt;
@@ -170,7 +170,7 @@ Changing the file mode creation mask of a process doesn't affect the mask of its
 |0001| other-execute|
 |==========|=========|
 
-###chmod, fchmod, and fchmodat
+### chmod, fchmod, and fchmodat
 
 <pre>
 #include &lt;sys/stat.h&gt;
@@ -183,7 +183,7 @@ Return 0 if OK, -1 on error.
 
 To change the permission bits of a file, the effective user ID of the process must be equal to the owner ID of the file, or the process must have superuser permissions.
 
-###truncate
+### truncate
 
 <pre>
 #include &lt;unistd.h&gt;
@@ -230,7 +230,7 @@ int remove(const char *pathname);
 
 Return 0 if OK, -1 on error.
 
-###rename and renameat
+### rename and renameat
 
 <pre>
 #include &lt;stdio.h&gt;
@@ -252,7 +252,7 @@ There are several conditions to describe for these functions, depending on wheth
 
 If *newname* already exists, we need permissions as if we were deleting it. Also, because we're removing the directory entry for *oldname* and possibly creating a directory entry for *newname*, we need write permission and execute permission in the directory containing *oldname* and in the directory containing *newname*.
 
-###symlink, symlinkat, readlink and readlinkat
+### symlink, symlinkat, readlink and readlinkat
 
 <pre>
 #include &lt;unistd.h&gt;
@@ -272,7 +272,7 @@ sszie_t readlinkat(int fd, const char *restrict pathname, char *restrict but, si
 
 Unlike `open` function, which follows a symbolic link, these two functions open the link itself and read the name in the link.
 
-###futimens, utimensat,amd utimes
+### futimens, utimensat,amd utimes
 
 <pre>
 #include &ls;sys/stat.h&gt;
@@ -300,7 +300,7 @@ strcut timeval{
 };
 {% endhighlight %}
 
-###mkdir, mkdirat and rmdir
+### mkdir, mkdirat and rmdir
 
 <pre>
 #include &lt;sys/stat.h&gt;
@@ -321,7 +321,7 @@ Return 0 if OK, -1 on error. (Why are `mkdir` and `rmdir` defined in different h
 
 This function is to delete an *empty* directory. If any directory entries other than dot and dot-dot exist in the directory, the function fails. If the link count of the directory becomes 0 with this call, and if no other process has the directory open, then the space occupied by the directory is freed.
 
-###reading directories
+### reading directories
 
 <pre>
 #include &lt;dirent.h&gt;
@@ -348,7 +348,7 @@ char d_name[]; /* null-terminated filename */
 
 The `DIR` structure is an internal structure used by these seven functions to mainain information about the directory being read.
 
-###chdir, fchdir, and getcwd
+### chdir, fchdir, and getcwd
 
 <pre>
 #include &lt;unistd.h&gt;
@@ -369,7 +369,7 @@ Return *buf* if OK, NULL on error.
 
 It gets the current working directory of the calling process. We must pass to this function the address of a buffer, *buf*, and its *size* (in bytes). The buffer must be large enough to accommodate the absolute pathname plus a terminating null byte, or else an error will be returned.
 
-##File Size
+## File Size
 
 The `st_size` member of the <a href="#stat">`stat`</a> contains the size of the file in bytes. This field is meaningful only for regular files, directories, and symbolic links. For a regular file, a file size of 0 is allowed. We'll get an end-of-file indication on the first read of the file. For a directory, the file size is usually a multiple of a number, such as 16 or 512. For a symbolic link, the file size is the number of bytes in the file name.
 
@@ -377,7 +377,7 @@ Most contemporary UNIX systems provide the fields `st_blksize` and `st_blocks`. 
 
 <a id="filesystem"></a>
 
-##File Systems
+## File Systems
 
 We can think of a disk drive being divided into one or more partitions. Each partition can contain a file system, as shown below. The i-nodes are *fixed-length* entries that contain most of the information about a file.
 ![Disk drive, partitions, and a file system]({{site.baseurl}}/images/disk_drive_partition_file_system.png)
@@ -403,7 +403,7 @@ The figure below shows the result.
 
 The i-node whose number id 2549 has a type field of "directory" and a link count equal to 2. Any leaf directory always has a link count of 2. The value of 2 comes from the directory entry that names the directory (*testdir* in this example) and from the entry for dot in that directory.  
 
-##Symbolic Links
+## Symbolic Links
 
 **A symbolic link is an indirect pointer to a file, unlike the hard links that point directly to the i-node of the file.** Symbolic links were introduced to get around he limitations of hard links.
 
@@ -436,7 +436,7 @@ will print
 $ this is for test
 {% endhighlight %}
 
-##File Times
+## File Times
 
 |---|---|---|
 |Field|Description|Example|ls(1) option|
@@ -448,6 +448,6 @@ $ this is for test
 
 Note that the system does not maintain the last-access time for an i-node. This is why the functions `access` and `stat`, for example, don't change any of the three times.
 
-##Summary of File Access Permission Bits
+## Summary of File Access Permission Bits
 
 ![summary of file access permission bits]({{site.baseurl}}/images/file_access_permission_bits.png)

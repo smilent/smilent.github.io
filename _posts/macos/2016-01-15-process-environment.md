@@ -15,11 +15,11 @@ keywords: "UNIX, process"
 This post is a note of APUE.
 <br><br>
 
-##main Function
+## main Function
 
 When a C program is executed by the kernel -- by one of the `exec` functions, a special start-up routine is called before the `main` function is called. The executable program file specifies this routine as the starting address for the program; this is set up by the link editor when it is invoked by the C compiler. This routine takes values from the kernel -- the command-line arguments and the environment -- and sets things up.
 
-##Process Termination
+## Process Termination
 
 There are eight ways for a process to terminate. Normal termination occurs in five ways:
 
@@ -35,9 +35,9 @@ Abnormal termination occurs in three ways:
 2. Receipt of a signal
 3. Response of the last thread to a cancellation request
 
-##Process Termination
+## Process Termination
 
-###<code>exit</code>, <code>Exit</code> and <code>_exit</code> Functions
+### <code>exit</code>, <code>Exit</code> and <code>_exit</code> Functions
 
 <pre>
 #include &lt;stdlib.h&gt;
@@ -52,7 +52,7 @@ The `exit` function has always performed a clean shutdown of the standard I/O li
 
 Returning an integer value from the `main` function is equivalent to calling `exit` with the same value.
 
-###<code>atexit</code> Function
+### <code>atexit</code> Function
 
 <pre>
 #include &lt;stdlib.h&gt;
@@ -64,12 +64,12 @@ We pass the address of a function as the argument to `atexit`. When this functio
 
 ![how a c program is started and how it terminates]({{site.baseurl}}/images/how_a_c_program_starts_and_terminates.png)
 
-##Environment List
+## Environment List
 
 Each program is also passed an *environment list*. Like the argument list, the environment list is an array of character pointers, with each pointer containing the address of a null-terminated C string. The address of the array of pointers is contained in the global variable *environ*:
 <pre>extern char **environ</pre>
 
-##Memory Layout of a C Program
+## Memory Layout of a C Program
 
 A C program has been composed of the following pieces:
 
@@ -86,9 +86,9 @@ appearing outside any function causes this variable to be stored in the uninitia
 <a id="memoryarrangement"></id>
 ![typical memory arrangement]({{site.baseurl}}/images/typical_memory_arrangement.png){: width="60%"}
 
-##Memory Allocation
+## Memory Allocation
 
-###<code>malloc</code>, <code>calloc</code> and <code>realloc</code> Functions
+### <code>malloc</code>, <code>calloc</code> and <code>realloc</code> Functions
 
 <pre>
 #include &lt;stdlib.h&gt;
@@ -107,7 +107,7 @@ The pointer returned by the three allocation functions is guaranteed to be suita
 
 The function `free` causes the space pointed to by `ptr` to be deallocated. This freed space is usually put into a pool of available memory and can be allocated in a later call to one of the three `alloc` functions.
 
-##Environment Variables
+## Environment Variables
 
 Then environment strings are usually of the form 
 <pre>name=value</pre>
